@@ -33,18 +33,7 @@ public class SceneController : MonoBehaviour
             restartCooldown -= Time.deltaTime;
         }
 
-        var device = inputController.leftHandDevice;
-        if (!device.isValid)
-        {
-            return false;
-        }
-
-        bool primaryButtonValue;
-        bool isActivated = device.TryGetFeatureValue(UnityEngine.XR.CommonUsages.primaryButton,
-                                                     out primaryButtonValue) 
-                           && primaryButtonValue;
-
-        if (isActivated && restartCooldown < 0f)
+        if (inputController.isRestartPressed && restartCooldown < 0f)
         {
             restartCooldown = 2f;
             return true;

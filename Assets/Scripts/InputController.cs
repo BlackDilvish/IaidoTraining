@@ -1,22 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class InputController : MonoBehaviour
 {
-    public UnityEngine.XR.InputDevice leftHandDevice;
+    //public UnityEngine.XR.InputDevice leftHandDevice;
+    public XRNode inputSource;
+    public InputHelpers.Button restartButton;
+    public float inputThreshold = 0.1f;
+
+    public bool isRestartPressed;
 
     private void Update()
     {
-        if (! this.leftHandDevice.isValid)
-        {
-            var leftHandDevices = new List<UnityEngine.XR.InputDevice>();
-            UnityEngine.XR.InputDevices.GetDevicesAtXRNode(UnityEngine.XR.XRNode.LeftHand, leftHandDevices);
-            if (leftHandDevices.Count == 1)
-            {
-                this.leftHandDevice = leftHandDevices[0];
-                Debug.Log(string.Format("Got reference to device '{0}'", this.leftHandDevice.name));
-            }
-        }
+        InputHelpers.IsPressed(InputDevices.GetDeviceAtXRNode(inputSource), restartButton, out isRestartPressed, inputThreshold);
+
     }
 }
