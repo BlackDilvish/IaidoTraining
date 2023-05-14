@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class TrainingStep : MonoBehaviour
 {
+    public enum ActivationType
+    {
+        Kissaki,
+        RightHand
+    }
+
     [SerializeField]
     private Color idleColor;
     [SerializeField]
     private Color activatedColor;
+    [SerializeField]
+    private ActivationType activationType;
 
     public bool isActivated = false;
 
@@ -19,7 +27,8 @@ public class TrainingStep : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Kissaki")
+        if ((activationType == ActivationType.Kissaki && other.gameObject.name == "Kissaki")
+         || (activationType == ActivationType.RightHand && other.gameObject.name == "Right Hand Position"))
         {
             this.GetComponent<Renderer>().material.SetColor("_Color", activatedColor);
             this.isActivated = true;

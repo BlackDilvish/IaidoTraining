@@ -1,29 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public enum TrainingType
-{
-    NukitsukeKiritsuke,
-    Mae
-}
+using UnityEngine.UI;
 
 public class TrainingController : MonoBehaviour
 {
-    [SerializeField]
-    private Transform playerPosition;
-    private List<TrainingStep> trainingSteps = new List<TrainingStep>();
+    public enum TrainingType
+    {
+        NukitsukeKiritsuke,
+        Mae
+    }
 
     [SerializeField]
-    private TrainingStep trainingStepPrefab;
+    private Transform playerPosition;
+
+    [SerializeField]
+    private TrainingStep kissakiStepPrefab;
+    [SerializeField]
+    private TrainingStep rightHandStepPrefab;
+
+    [SerializeField]
+    private Text text;
 
     public TrainingType trainingType;
     private ITraining currentTraining;
-
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
@@ -33,7 +33,8 @@ public class TrainingController : MonoBehaviour
 
             if (this.currentTraining.IsFinished())
             {
-                Debug.Log("Finished training");
+                this.text.text = "Finished: " + this.trainingType.ToString();
+                this.currentTraining = null;
             }
         }
     }
@@ -45,10 +46,11 @@ public class TrainingController : MonoBehaviour
             this.currentTraining.Clear();
         }
 
-        switch (trainingType)
+        this.text.text = "Current training sequence: " + this.trainingType.ToString();
+        switch (this.trainingType)
         {
             case TrainingType.NukitsukeKiritsuke:
-                this.currentTraining = new NukitsukeKiritsukeTraining(playerPosition, trainingStepPrefab);
+                this.currentTraining = new NukitsukeKiritsukeTraining(playerPosition, kissakiStepPrefab, rightHandStepPrefab);
                 break;
             default:
                 break;

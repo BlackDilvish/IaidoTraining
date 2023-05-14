@@ -22,7 +22,7 @@ public class InputController : MonoBehaviour
         InputHelpers.IsPressed(InputDevices.GetDeviceAtXRNode(inputSource), debugButton, out bool debugpress, inputThreshold);
         if (debugpress)
         {
-            Debug.Log("Position" + GameObject.Find("Kissaki").transform.position);
+            Debug.Log("Position " + GameObject.Find("Right Hand Position").transform.position);
         }
     }
 }
