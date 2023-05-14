@@ -1058,6 +1058,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 179891209}
+        m_TargetAssemblyTypeName: TrainingController, Assembly-CSharp
+        m_MethodName: StartTraining
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   dummyObject: {fileID: 1642217953379934889, guid: 41ab6c524a8605c48b817be5bbc8fb49, type: 3}
   spawnLocation: {fileID: 578623314}
 --- !u!4 &1009425189
@@ -1068,7 +1080,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1009425187}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2031924, y: 1.742627, z: -0.27296862}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2185,6 +2197,7 @@ MonoBehaviour:
   restartButton: 6
   inputThreshold: 0.1
   isRestartPressed: 0
+  debugButton: 8
 --- !u!4 &1855990307
 Transform:
   m_ObjectHideFlags: 0
@@ -2193,7 +2206,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1855990305}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2031924, y: 1.742627, z: -0.27296862}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

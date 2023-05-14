@@ -19,8 +19,6 @@ public class TrainingStep : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collision with " + other.gameObject.name);
-
         if (other.gameObject.name == "Kissaki")
         {
             this.GetComponent<Renderer>().material.SetColor("_Color", activatedColor);

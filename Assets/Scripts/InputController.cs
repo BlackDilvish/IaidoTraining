@@ -13,9 +13,16 @@ public class InputController : MonoBehaviour
 
     public bool isRestartPressed;
 
+    public InputHelpers.Button debugButton;
+
     private void Update()
     {
         InputHelpers.IsPressed(InputDevices.GetDeviceAtXRNode(inputSource), restartButton, out isRestartPressed, inputThreshold);
 
+        InputHelpers.IsPressed(InputDevices.GetDeviceAtXRNode(inputSource), debugButton, out bool debugpress, inputThreshold);
+        if (debugpress)
+        {
+            Debug.Log("Position" + GameObject.Find("Kissaki").transform.position);
+        }
     }
 }
