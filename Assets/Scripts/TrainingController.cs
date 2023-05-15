@@ -52,11 +52,7 @@ public class TrainingController : MonoBehaviour
 
     public void StartTraining()
     {
-        if (this.currentTraining != null)
-        {
-            this.currentTraining.Clear();
-            this.currentTraining = null;
-        }
+        this.ExitTraining();
 
         this.text.text = "Current training sequence: " + this.trainingType.ToString();
         switch (this.trainingType)
@@ -73,23 +69,19 @@ public class TrainingController : MonoBehaviour
         }
     }
 
+    public void ExitTraining()
+    {
+        this.text.text = "";
+        if (this.currentTraining != null)
+        {
+            this.currentTraining.Clear();
+            this.currentTraining = null;
+        }
+    }
+
     public void SetTrainingType(int type)
     {
         Debug.Log("Picked the next training: " + type);
-        switch (type)
-        {
-            case 0:
-                this.trainingType = TrainingType.NukitsukeKiritsuke;
-                break;
-            case 1:
-                this.trainingType = TrainingType.Mae;
-                break;
-            case 2:
-                this.trainingType = TrainingType.Kesagiri;
-                break;
-            default:
-                Debug.LogWarning("Unknown training type: " + type.ToString());
-                break;
-        }
+        this.trainingType = (TrainingType)type;
     }
 }
