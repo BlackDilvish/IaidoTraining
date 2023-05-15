@@ -53,6 +53,24 @@ public class TrainingController : MonoBehaviour
                 this.currentTraining = new NukitsukeKiritsukeTraining(playerPosition, kissakiStepPrefab, rightHandStepPrefab);
                 break;
             default:
+                Debug.LogWarning("Training not implemented: " + this.trainingType.ToString());
+                break;
+        }
+    }
+
+    public void SetTrainingType(int type)
+    {
+        Debug.Log("Picked the next training: " + type);
+        switch (type)
+        {
+            case 0:
+                this.trainingType = TrainingType.NukitsukeKiritsuke;
+                break;
+            case 1:
+                this.trainingType = TrainingType.Mae;
+                break;
+            default:
+                Debug.LogWarning("Unknown training type: " + type.ToString());
                 break;
         }
     }

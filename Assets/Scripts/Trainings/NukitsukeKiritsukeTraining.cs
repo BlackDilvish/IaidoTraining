@@ -26,7 +26,7 @@ public class NukitsukeKiritsukeTraining : ITraining
 
     private List<List<Vector3>> rightHandMoves = new List<List<Vector3>>() { new List<Vector3>() { new Vector3(-0.12f, 0.57f, 0.1f),
                                                                                                    new Vector3(0.04f, 0.8f, 0.45f),
-                                                                                                   new Vector3(0.15f, 1f, 0.5f),
+                                                                                                   new Vector3(0.15f, 0.9f, 0.5f),
                                                                                                    new Vector3(0.45f, 1f, 0.5f), },
                                                                              new List<Vector3>() { new Vector3(0.45f, 1f, 0.4f),
                                                                                                    new Vector3(0.34f, 1f, 0.45f),
