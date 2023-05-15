@@ -1310,7 +1310,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.311, y: 0.713}
+  m_AnchoredPosition: {x: -4.311, y: 1.024}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &590778163 stripped
@@ -1513,7 +1513,7 @@ GameObject:
   - component: {fileID: 723871817}
   - component: {fileID: 723871816}
   m_Layer: 5
-  m_Name: Dropdown (Legacy)
+  m_Name: TrainingsDropdown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1595,7 +1595,7 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Mae
       m_Image: {fileID: 0}
-    - m_Text: Unknown
+    - m_Text: Kesagiri
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:

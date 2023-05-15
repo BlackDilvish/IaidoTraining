@@ -8,7 +8,18 @@ public class TrainingController : MonoBehaviour
     public enum TrainingType
     {
         NukitsukeKiritsuke,
-        Mae
+        Mae,
+        Ushiro,
+        Ukenagashi,
+        Tsukaate,
+        Kesagiri,
+        Morotetsuki,
+        Sanpogiri,
+        Ganmenate,
+        Soetezuki,
+        Shihogiri,
+        Sogiri,
+        Nukiuchi
     }
 
     [SerializeField]
@@ -44,6 +55,7 @@ public class TrainingController : MonoBehaviour
         if (this.currentTraining != null)
         {
             this.currentTraining.Clear();
+            this.currentTraining = null;
         }
 
         this.text.text = "Current training sequence: " + this.trainingType.ToString();
@@ -51,6 +63,9 @@ public class TrainingController : MonoBehaviour
         {
             case TrainingType.NukitsukeKiritsuke:
                 this.currentTraining = new NukitsukeKiritsukeTraining(playerPosition, kissakiStepPrefab, rightHandStepPrefab);
+                break;
+            case TrainingType.Kesagiri:
+                this.currentTraining = new KesagiriTraining(playerPosition, kissakiStepPrefab, rightHandStepPrefab);
                 break;
             default:
                 Debug.LogWarning("Training not implemented: " + this.trainingType.ToString());
@@ -68,6 +83,9 @@ public class TrainingController : MonoBehaviour
                 break;
             case 1:
                 this.trainingType = TrainingType.Mae;
+                break;
+            case 2:
+                this.trainingType = TrainingType.Kesagiri;
                 break;
             default:
                 Debug.LogWarning("Unknown training type: " + type.ToString());
