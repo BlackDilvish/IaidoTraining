@@ -1,95 +1,30 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public class KesagiriTraining : ITraining
+public class KesagiriTraining : KissakiAndRightHandTraining
 {
-    private Transform playerPosition;
-    private TrainingStep kissakiStepPrefab;
-    private TrainingStep rightHandStepPrefab;
+    private static List<List<Vector3>> kissakiMoves = new List<List<Vector3>>() { new List<Vector3>() { new Vector3(-0.3f, 0.5f, -0.6f),
+                                                                                                        new Vector3(-0.3f, 0.37f, -0.22f),
+                                                                                                        new Vector3(-0.3f, 0.6f, 0.9f),
+                                                                                                        new Vector3(-0.1f, 1.1f, 1.1f),
+                                                                                                        new Vector3(0.05f, 1.55f, 1.14f),},
+                                                                                  new List<Vector3>() { new Vector3(0.33f, 2.1f, 0f),
+                                                                                                        new Vector3(0.1f, 1.5f, 1.2f),
+                                                                                                        new Vector3(-0.25f, 1f, 1.25f),
+                                                                                                        new Vector3(-0.5f, 0.64f, 1.15f)}};
 
-    private List<TrainingStep> trainingSteps = new List<TrainingStep>();
-    private List<List<Vector3>> kissakiMoves = new List<List<Vector3>>() { new List<Vector3>() { new Vector3(-0.1f, 0.8f, 0.9f),
-                                                                                                 new Vector3(0f, 1f, 1.2f),
-                                                                                                 new Vector3(0.2f, 1.2f, 1.24f), },
-                                                                           new List<Vector3>() { new Vector3(0.5f, 1f, 1.2f),
-                                                                                                 new Vector3(0f, 1f, 1.1f),
-                                                                                                 new Vector3(-0.6f, 1.25f, 0.53f),
-                                                                                                 new Vector3(-0.6f, 1.4f, 0.05f),
-                                                                                                 new Vector3(0f, 1.7f, -0.9f),}};
-
-    private List<List<Vector3>> rightHandMoves = new List<List<Vector3>>() { new List<Vector3>() { new Vector3(-0.12f, 0.57f, 0.1f),
-                                                                                                   new Vector3(0.04f, 0.8f, 0.45f),
-                                                                                                   new Vector3(0.15f, 0.9f, 0.5f),
-                                                                                                   new Vector3(0.25f, 1f, 0.5f), },
-                                                                             new List<Vector3>() { new Vector3(0.45f, 1f, 0.4f),
-                                                                                                   new Vector3(0.34f, 1f, 0.45f),
-                                                                                                   new Vector3(0.12f, 1.07f, 0.45f),
-                                                                                                   new Vector3(0.02f, 1.2f, 0.4f),
-                                                                                                   new Vector3(0f, 1.5f, 0f), }};
-
-    private const int stagesNumber = 2;
-    private int currentStage = 0;
-
-    private bool isFinished = false;
+    private static List<List<Vector3>> rightHandMoves = new List<List<Vector3>>() { new List<Vector3>() { new Vector3(-0.22f, 0.57f, 0.17f),
+                                                                                                          new Vector3(-0.16f, 0.84f, 0.48f),
+                                                                                                          new Vector3(0f, 1.25f, 0.5f),
+                                                                                                          new Vector3(0.07f, 1.4f, 0.4f),
+                                                                                                          new Vector3(0.13f, 1.48f, 0.3f),},
+                                                                                    new List<Vector3>() { new Vector3(0.09f, 1.4f, 0.4f),
+                                                                                                          new Vector3(-0.07f, 0.94f, 0.55f),
+                                                                                                          new Vector3(-0.16f, 0.73f, 0.46f),
+                                                                                                          new Vector3(-0.23f, 0.53f, 0.33f)}};
 
     public KesagiriTraining(Transform playerPosition, TrainingStep kissakiStepPrefab, TrainingStep rightHandStepPrefab)
+        : base(playerPosition, kissakiStepPrefab, rightHandStepPrefab, kissakiMoves, rightHandMoves)
     {
-        this.playerPosition = playerPosition;
-        this.kissakiStepPrefab = kissakiStepPrefab;
-        this.rightHandStepPrefab = rightHandStepPrefab;
-
-        this.Initialize();
-    }
-
-    public void Initialize()
-    {
-        this.StartStage(0);
-    }
-
-    public void Update()
-    {
-        bool finishedStage = trainingSteps.All(step => step.isActivated);
-        if (finishedStage && currentStage < stagesNumber - 1)
-        {
-            this.Clear();
-            this.StartStage(++this.currentStage);
-        }
-        else if (finishedStage && currentStage == stagesNumber - 1)
-        {
-            Debug.Log("Finished training");
-            this.Clear();
-            this.isFinished = true;
-        }
-    }
-
-    public bool IsFinished()
-    {
-        return this.isFinished;
-    }
-
-    private void StartStage(int stage)
-    {
-        Debug.Log("Starting step: " + stage);
-        foreach (Vector3 move in this.kissakiMoves[stage])
-        {
-            this.trainingSteps.Add(GameObject.Instantiate(this.kissakiStepPrefab, move + this.playerPosition.position, Quaternion.identity));
-        }
-
-        foreach (Vector3 move in this.rightHandMoves[stage])
-        {
-            this.trainingSteps.Add(GameObject.Instantiate(this.rightHandStepPrefab, move + this.playerPosition.position, Quaternion.identity));
-        }
-    }
-
-    public void Clear()
-    {
-        foreach (TrainingStep step in this.trainingSteps)
-        {
-            GameObject.Destroy(step.gameObject);
-        }
-
-        this.trainingSteps.Clear();
     }
 }
