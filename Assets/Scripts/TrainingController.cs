@@ -66,6 +66,9 @@ public class TrainingController : MonoBehaviour
             case TrainingType.Sogiri:
                 this.currentTraining = new SogiriTraining(playerPosition, kissakiStepPrefab, rightHandStepPrefab);
                 break;
+            case TrainingType.Nukiuchi:
+                this.currentTraining = new NukiuchiTraining(playerPosition, kissakiStepPrefab, rightHandStepPrefab);
+                break;
             default:
                 Debug.LogWarning("Training not implemented: " + this.trainingType.ToString());
                 break;

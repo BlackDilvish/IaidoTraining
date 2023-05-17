@@ -7,13 +7,17 @@ using UnityEngine.Events;
 
 public class SceneController : MonoBehaviour
 {
-    [SerializeField] private InputController inputController;
+    [SerializeField] 
+    private InputController inputController;
     private float restartCooldown = 2f;
 
-    [SerializeField] public OnResetEvent onResetEvent;
+    [SerializeField] 
+    public OnResetEvent onResetEvent;
 
-    [SerializeField] private GameObject dummyObject;
-    [SerializeField] private Transform spawnLocation;
+    [SerializeField] 
+    private GameObject dummyObject;
+    [SerializeField] 
+    private Transform spawnLocation;
 
     private IList<GameObject> spawnedDummies = new List<GameObject>();
 
