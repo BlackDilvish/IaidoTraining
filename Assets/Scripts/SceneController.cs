@@ -9,7 +9,7 @@ public class SceneController : MonoBehaviour
 {
     [SerializeField] 
     private InputController inputController;
-    private float restartCooldown = 2f;
+    private bool wasRestartPressed = false;
 
     [SerializeField] 
     public OnResetEvent onResetEvent;
@@ -32,15 +32,14 @@ public class SceneController : MonoBehaviour
 
     private bool ShouldRestartScene()
     {
-        if (restartCooldown > 0f)
+        if (inputController.isRestartPressed && !this.wasRestartPressed)
         {
-            restartCooldown -= Time.deltaTime;
-        }
-
-        if (inputController.isRestartPressed && restartCooldown < 0f)
-        {
-            restartCooldown = 2f;
+            this.wasRestartPressed = true;
             return true;
+        }
+        else if (!inputController.isRestartPressed && this.wasRestartPressed)
+        {
+            this.wasRestartPressed = false;
         }
 
         return false;
