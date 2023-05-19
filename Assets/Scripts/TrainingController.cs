@@ -60,8 +60,14 @@ public class TrainingController : MonoBehaviour
             case TrainingType.NukitsukeKiritsuke:
                 this.currentTraining = new NukitsukeKiritsukeTraining(playerPosition, kissakiStepPrefab, rightHandStepPrefab);
                 break;
+            case TrainingType.Mae:
+                this.currentTraining = new MaeTraining(playerPosition, kissakiStepPrefab, rightHandStepPrefab);
+                break;
             case TrainingType.Kesagiri:
                 this.currentTraining = new KesagiriTraining(playerPosition, kissakiStepPrefab, rightHandStepPrefab);
+                break;
+            case TrainingType.Sanpogiri:
+                this.currentTraining = new SanpogiriTraining(playerPosition, kissakiStepPrefab, rightHandStepPrefab);
                 break;
             case TrainingType.Sogiri:
                 this.currentTraining = new SogiriTraining(playerPosition, kissakiStepPrefab, rightHandStepPrefab);
@@ -71,6 +77,7 @@ public class TrainingController : MonoBehaviour
                 break;
             default:
                 Debug.LogWarning("Training not implemented: " + this.trainingType.ToString());
+                this.text.text += "(not implemented)";
                 break;
         }
     }
