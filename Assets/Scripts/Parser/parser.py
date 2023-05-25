@@ -1,6 +1,6 @@
 import json
-
-STEPS = 2
+import os
+import UnityEngine
 
 def parse_json_to_csharp(json_file, list_name):
     with open(json_file, 'r') as file:
@@ -20,10 +20,12 @@ def compose_final_list(vectors, list_name, output_file):
 rightHandMoves = []
 kissakiMoves = []
 
-for i in range(STEPS):
-    file = f'moveData{i}.json'
-    rightHandMoves.append(parse_json_to_csharp(file, "rightHandMoves"))
-    kissakiMoves.append(parse_json_to_csharp(file, "kissakiMoves"))
+for filename in os.listdir(UnityEngine.Application.persistentDataPath):
+    if filename.startswith('moveData'):
+        file = os.path.join(UnityEngine.Application.persistentDataPath, filename)
+        rightHandMoves.append(parse_json_to_csharp(file, "rightHandMoves"))
+        kissakiMoves.append(parse_json_to_csharp(file, "kissakiMoves"))
 
-compose_final_list(rightHandMoves, "rightHandMoves", "moves.cs")
-compose_final_list(kissakiMoves, "kissakiMoves", "moves.cs")
+movesPath = UnityEngine.Application.dataPath + "/Scripts/Parser/Moves.cs"
+compose_final_list(rightHandMoves, "rightHandMoves", movesPath)
+compose_final_list(kissakiMoves, "kissakiMoves", movesPath)
